@@ -1,9 +1,4 @@
 .quote {
-	text-align: center;
-	height: 150px;
-}
-
-.author {
-	text-align: right;
-	height: 50px;
+	margin-top: 50px;
+	word-wrap: break-word;
 }

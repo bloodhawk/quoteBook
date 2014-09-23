@@ -1,33 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="quoteApp">
 <head>
 	<meta charset="UTF-8">
 	<title>quoteBook</title>
-	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="css/main.css">
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="main.css">
 </head>
-<body>
+<body ng-controller="mainController">
 
 	<div class="container">
-		<h1>My Favorite Quotes</h1>
-		<div class="row">
-			<div class="buttons col-md-12">
-				<button>Add Quote</button>
-				<button>Remove Quote</button>
-				<button>Filter Quote</button>
-			</div>
-		</div>
-		<div class="row">
-			<div class="quote col-md-12">
+		<div class="row text-center">
+			<div class="col-md-12 buttons">
 				
+				<h1>My Favorite Quotes</h1>
+				
+				<button ng-click="showAddQuote()">Add Quote</button>
+
+				<button ng-click="showRemoveQuote()">Remove Quote</button>
+
+				<button ng-click="showFilterQuote()">Filter Quote</button>
+
+				<div ng-show="quoteAddShow" class="inputs">
+					<input type="text" placeholder="Enter quote" ng-model="quote">
+					<input type="text" placeholder="Enter author" ng-model="author">
+					<button ng-click="addQuote()">Submit</button>
+				</div>
+
+				<div ng-show="quoteRemoveShow" class="inputs">
+					<input type="text" placeholder="Enter quote to remove" ng-model="quoteToRemove">
+					<button ng-click="removeQuote()">Submit</button>
+				</div>
+				
+				<div ng-show="quoteFilterShow" class="inputs">
+					<input type="text" placeholder="Search for quote" ng-model="filterText">
+				</div>
+
 			</div>
 		</div>
-		<div class="row">
-			<div class="author col-md-12">
-			
+		<div ng-repeat="quote in quoteList | filter:filterText" class="text-center main">
+			<div class="quote col-md-6 col-md-offset-3">
+			  {{quote.quote}}
+			</div>
+			<div class="col-md-12">
+			  -{{quote.author}}
 			</div>
 		</div>
 	</div>
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+<script src="js/cookies.js"></script>
+<script src="js/app.js"></script>
+<script src="js/mainController.js"></script>
+<script src="js/services.js"></script>
 </body>
 </html>
